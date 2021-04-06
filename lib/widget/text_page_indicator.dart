@@ -75,7 +75,12 @@ class _TextPageIndicatorState extends State<TextPageIndicator>
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    _pageController.dispose();
+  }
+
+  @override
+  void deactivate() {
+    // TODO: implement deactivate
+    super.deactivate();
     _animationController.dispose();
     timer.cancel();
   }

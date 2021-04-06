@@ -120,7 +120,7 @@ class _TermOfUse extends StatelessWidget {
         text: "Bağlandığınız zaman gizlilik sözleşmesini ve ",
         style: TextStyle(
           color: Colors.white,
-          fontSize: 14.0,
+          fontSize: 15.0,
         ),
         children: [
           TextSpan(
@@ -138,10 +138,6 @@ class _TermOfUse extends StatelessWidget {
           ),
           TextSpan(
             text: " kabul etmiş olursunuz. ",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14.0,
-            ),
           ),
           TextSpan(
             text: 'Netflix kullanım\nhakkında',
