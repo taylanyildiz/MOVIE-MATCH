@@ -12,5 +12,5 @@ class CustomColor {
       Color(0xFF000000).withOpacity(.94),
     ],
   );
-  static const Color bottomButtonBack = const Color(0xFF2A2626);
+  static Color bottomButtonBack = const Color(0xFF2A2626);
 }

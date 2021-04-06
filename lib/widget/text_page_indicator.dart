@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class TextPageIndicator extends StatefulWidget {
@@ -28,9 +30,10 @@ class _TextPageIndicatorState extends State<TextPageIndicator>
   PageController _pageController;
   AnimationController _animationController;
   Animation _animation;
+  Timer timer;
   int pageCount = 0;
 
-  PageItem(context, index) {
+  Widget pageItem(context, index) {
     return AnimatedBuilder(
       animation: _pageController,
       builder: (context, child) => widget.itemBuilder(context, index),
@@ -53,6 +56,28 @@ class _TextPageIndicatorState extends State<TextPageIndicator>
     _animation.addListener(() {
       setState(() {});
     });
+
+    timer = Timer.periodic(Duration(seconds: 5), (timer) {
+      if (pageCount != widget.itemCount - 1) {
+        pageCount++;
+      } else {
+        pageCount = 0;
+      }
+      _pageController.animateToPage(
+        pageCount,
+        duration: Duration(milliseconds: 600),
+        curve: Curves.linear,
+      );
+    });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _pageController.dispose();
+    _animationController.dispose();
+    timer.cancel();
   }
 
   @override
@@ -87,7 +112,7 @@ class _TextPageIndicatorState extends State<TextPageIndicator>
               child: PageView.builder(
                 controller: _pageController,
                 itemCount: widget.itemCount,
-                itemBuilder: (context, index) => PageItem(context, index),
+                itemBuilder: (context, index) => pageItem(context, index),
                 onPageChanged: (page) => pageCount = page,
               ),
             )
