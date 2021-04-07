@@ -10,6 +10,8 @@ class ButtonandTerm extends StatefulWidget {
 class _ButtonandTermState extends State<ButtonandTerm>
     with TickerProviderStateMixin {
   AnimationController _controller;
+  AnimationController _controller2;
+  Animation<double> _animation2;
   Animation<double> _animation;
 
   @override
@@ -20,18 +22,27 @@ class _ButtonandTermState extends State<ButtonandTerm>
       vsync: this,
       duration: Duration(milliseconds: 500),
     );
+    _controller2 = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 1),
+    )..forward();
     _animation = Tween<double>(begin: 1.0, end: .96).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Curves.linear,
       ),
     );
+    _animation2 = Tween<double>(begin: 0.0, end: 1.0).animate(_controller2);
+    _animation2.addListener(() {
+      setState(() {});
+    });
   }
 
   @override
   void dispose() {
     super.dispose();
     _controller.dispose();
+    _controller2.dispose();
   }
 
   Widget _customButton(child) {
@@ -74,37 +85,48 @@ class _ButtonandTermState extends State<ButtonandTerm>
   }
 
   @override
+  void deactivate() {
+    // TODO: implement deactivate
+    super.deactivate();
+    _controller.dispose();
+    _controller2.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Positioned(
       bottom: 0.0,
-      child: Container(
-        width: 400.0,
-        height: 250.0,
-        decoration: BoxDecoration(
-          color: CustomColor.bottomButtonBack,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(44.0),
-            topRight: Radius.circular(44.0),
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 30.0),
-            GestureDetector(
-              onTap: () async {
-                await _controller.forward();
-                _controller.reverse();
-              },
-              child: AnimatedBuilder(
-                animation: _animation,
-                builder: (context, child) => _customButton(child),
-              ),
+      child: FadeTransition(
+        opacity: _animation2,
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: 350.0,
+          decoration: BoxDecoration(
+            color: CustomColor.bottomButtonBack,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(44.0),
+              topRight: Radius.circular(44.0),
             ),
-            Spacer(),
-            _TermOfUse(),
-            SizedBox(height: 10.0),
-          ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Spacer(flex: 1),
+              GestureDetector(
+                onTap: () async {
+                  await _controller.forward();
+                  _controller.reverse();
+                },
+                child: AnimatedBuilder(
+                  animation: _animation,
+                  builder: (context, child) => _customButton(child),
+                ),
+              ),
+              Spacer(flex: 2),
+              _TermOfUse(),
+              SizedBox(height: 20.0),
+            ],
+          ),
         ),
       ),
     );
