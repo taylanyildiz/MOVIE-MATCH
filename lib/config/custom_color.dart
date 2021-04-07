@@ -3,14 +3,12 @@ import 'package:flutter/cupertino.dart';
 class CustomColor {
   static LinearGradient backgroundColor = LinearGradient(
     begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
+    end: Alignment.center,
     colors: [
-      Color(0xFFFFFFFF).withOpacity(.66),
-      Color(0xFFFFFFFF).withOpacity(.3),
-      Color(0xFF212020).withOpacity(.80),
-      Color(0xFF212020).withOpacity(.80),
-      Color(0xFF000000).withOpacity(.94),
+      Color(0xFFFFFFFF).withOpacity(.31),
+      Color(0xFF4B4242).withOpacity(.81),
+      Color(0xFF000000).withOpacity(.98),
     ],
   );
-  static Color bottomButtonBack = const Color(0xFF2A2626);
+  static Color bottomButtonBack = const Color(0xFF0D0D0D);
 }

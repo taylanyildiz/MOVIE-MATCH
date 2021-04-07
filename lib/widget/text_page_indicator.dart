@@ -149,7 +149,7 @@ class PageIndicatorPaint extends CustomPainter {
         backgroundPaint = Paint()..color = indicatorBackgroundColor,
         thickness = thickness ?? 3.0,
         space = space ?? 10.0,
-        radius = radius ?? 10.0;
+        radius = radius ?? 8.0;
   final Paint indicatorPaint;
   final Paint backgroundPaint;
   @override

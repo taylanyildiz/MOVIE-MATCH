@@ -13,24 +13,25 @@ class MovieBackground extends StatelessWidget {
         width: 600,
         child: Transform.rotate(
           angle: pi / 6,
-          child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 5,
-              childAspectRatio: 1 / 1.3,
-            ),
-            padding: EdgeInsets.all(5.0),
-            itemCount: movieImage.length,
-            itemBuilder: (context, index) {
-              return Card(
-                child: ClipRRect(
+          child: Hero(
+            tag: 'movie',
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 5,
+                childAspectRatio: 1 / 1.3,
+              ),
+              padding: EdgeInsets.all(5.0),
+              itemCount: movieImage.length,
+              itemBuilder: (context, index) {
+                return ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: Image.asset(
                     movieImage[index],
                     fit: BoxFit.cover,
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),

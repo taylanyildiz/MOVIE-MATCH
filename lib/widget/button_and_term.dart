@@ -24,7 +24,7 @@ class _ButtonandTermState extends State<ButtonandTerm>
     );
     _controller2 = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 1),
+      duration: Duration(seconds: 2),
     )..forward();
     _animation = Tween<double>(begin: 1.0, end: .96).animate(
       CurvedAnimation(
@@ -32,9 +32,17 @@ class _ButtonandTermState extends State<ButtonandTerm>
         curve: Curves.linear,
       ),
     );
-    _animation2 = Tween<double>(begin: 0.0, end: 1.0).animate(_controller2);
+    _animation2 = Tween<double>(begin: -300.0, end: 0.0).animate(
+      CurvedAnimation(
+        parent: _controller2,
+        curve: Curves.elasticOut,
+      ),
+    );
     _animation2.addListener(() {
-      setState(() {});
+      Future.delayed(
+        Duration(seconds: 2),
+        () => setState(() {}),
+      );
     });
   }
 
@@ -94,39 +102,37 @@ class _ButtonandTermState extends State<ButtonandTerm>
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      bottom: 0.0,
-      child: FadeTransition(
-        opacity: _animation2,
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 350.0,
-          decoration: BoxDecoration(
-            color: CustomColor.bottomButtonBack,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(44.0),
-              topRight: Radius.circular(44.0),
-            ),
+    return AnimatedPositioned(
+      duration: Duration(milliseconds: 100),
+      bottom: _animation2.value,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 250.0,
+        decoration: BoxDecoration(
+          color: CustomColor.bottomButtonBack,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(44.0),
+            topRight: Radius.circular(44.0),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Spacer(flex: 1),
-              GestureDetector(
-                onTap: () async {
-                  await _controller.forward();
-                  _controller.reverse();
-                },
-                child: AnimatedBuilder(
-                  animation: _animation,
-                  builder: (context, child) => _customButton(child),
-                ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Spacer(flex: 1),
+            GestureDetector(
+              onTap: () async {
+                await _controller.forward();
+                _controller.reverse();
+              },
+              child: AnimatedBuilder(
+                animation: _animation,
+                builder: (context, child) => _customButton(child),
               ),
-              Spacer(flex: 2),
-              _TermOfUse(),
-              SizedBox(height: 20.0),
-            ],
-          ),
+            ),
+            Spacer(flex: 2),
+            _TermOfUse(),
+            SizedBox(height: 20.0),
+          ],
         ),
       ),
     );
