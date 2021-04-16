@@ -1,4 +1,4 @@
-# welcome_screen_test
+# movie_match_splash_screen
 
 A new Flutter project.
 

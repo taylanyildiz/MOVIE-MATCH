@@ -1,1 +1,1 @@
-export 'image_file.dart';
+export 'movies_image.dart';

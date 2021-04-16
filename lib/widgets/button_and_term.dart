@@ -1,14 +1,16 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:welcome_screen_test/config/config.dart';
+import 'package:movie_match_splash_screen/screens/screens.dart';
+import 'package:movie_match_splash_screen/screens/transiton_screen.dart';
 
-class ButtonandTerm extends StatefulWidget {
+class ButtonNetflix extends StatefulWidget {
   @override
-  _ButtonandTermState createState() => _ButtonandTermState();
+  _ButtonNetflixState createState() => _ButtonNetflixState();
 }
 
-class _ButtonandTermState extends State<ButtonandTerm>
+class _ButtonNetflixState extends State<ButtonNetflix>
     with TickerProviderStateMixin {
+  //Animation
   AnimationController _controller;
   AnimationController _controller2;
   Animation<double> _animation2;
@@ -20,7 +22,7 @@ class _ButtonandTermState extends State<ButtonandTerm>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 500),
+      duration: Duration(milliseconds: 200),
     );
     _controller2 = AnimationController(
       vsync: this,
@@ -46,22 +48,15 @@ class _ButtonandTermState extends State<ButtonandTerm>
     });
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
-    _controller2.dispose();
-  }
-
   Widget _customButton(child) {
     return Transform.scale(
       scale: _animation.value,
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 60.0),
+        margin: EdgeInsets.symmetric(horizontal: 40.0),
         padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 15.0),
         decoration: BoxDecoration(
           color: Colors.red,
-          borderRadius: BorderRadius.circular(30.0),
+          borderRadius: BorderRadius.circular(10.0),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -85,7 +80,7 @@ class _ButtonandTermState extends State<ButtonandTerm>
                 fontSize: 22.0,
                 fontWeight: FontWeight.bold,
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -102,44 +97,41 @@ class _ButtonandTermState extends State<ButtonandTerm>
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedPositioned(
-      duration: Duration(milliseconds: 100),
-      bottom: _animation2.value,
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 250.0,
-        decoration: BoxDecoration(
-          color: CustomColor.bottomButtonBack,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(44.0),
-            topRight: Radius.circular(44.0),
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Spacer(flex: 1),
-            GestureDetector(
-              onTap: () async {
-                await _controller.forward();
-                _controller.reverse();
-              },
-              child: AnimatedBuilder(
-                animation: _animation,
-                builder: (context, child) => _customButton(child),
-              ),
-            ),
-            Spacer(flex: 2),
-            _TermOfUse(),
-            SizedBox(height: 20.0),
-          ],
-        ),
+    return GestureDetector(
+      onTap: () async {
+        await _controller.forward();
+        await _controller.reverse();
+        Navigator.push(
+          context,
+          PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  TranstionScreen(),
+              transitionDuration: Duration(milliseconds: 600),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return SlideTransition(
+                  position:
+                      Tween<Offset>(begin: Offset(1.0, 0.0), end: Offset.zero)
+                          .animate(animation),
+                  child: SlideTransition(
+                    position:
+                        Tween<Offset>(begin: Offset(1.0, 0.0), end: Offset.zero)
+                            .animate(animation),
+                    child: child,
+                  ),
+                );
+              }),
+        );
+      },
+      child: AnimatedBuilder(
+        animation: _animation,
+        builder: (context, child) => _customButton(child),
       ),
     );
   }
 }
 
-class _TermOfUse extends StatelessWidget {
+class TermOfUse extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(

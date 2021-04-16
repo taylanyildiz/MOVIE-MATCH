@@ -1,6 +1,6 @@
 {
-    "name": "welcome_screen_test",
-    "short_name": "welcome_screen_test",
+    "name": "movie_match_splash_screen",
+    "short_name": "movie_match_splash_screen",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

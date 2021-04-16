@@ -1,4 +1,4 @@
-package com.example.welcome_screen_test
+package com.example.movie_match_splash_screen
 
 import io.flutter.embedding.android.FlutterActivity
 

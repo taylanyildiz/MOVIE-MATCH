@@ -2,14 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-class TextPageIndicator extends StatefulWidget {
+class IndicatorPainter extends StatefulWidget {
   Color backgroundColor;
   Color indicatorColor;
   Color indicatorBackgroundColor;
   final int itemCount;
   final Widget Function(BuildContext context, int index) itemBuilder;
 
-  TextPageIndicator({
+  IndicatorPainter({
     Key key,
     Color backgroundColor,
     Color indicatorColor,
@@ -22,10 +22,10 @@ class TextPageIndicator extends StatefulWidget {
         super(key: key);
 
   @override
-  _TextPageIndicatorState createState() => _TextPageIndicatorState();
+  _IndicatorPainterState createState() => _IndicatorPainterState();
 }
 
-class _TextPageIndicatorState extends State<TextPageIndicator>
+class _IndicatorPainterState extends State<IndicatorPainter>
     with TickerProviderStateMixin {
   PageController _pageController;
   AnimationController _animationController;
@@ -57,7 +57,7 @@ class _TextPageIndicatorState extends State<TextPageIndicator>
       setState(() {});
     });
 
-    timer = Timer.periodic(Duration(seconds: 5), (timer) {
+    timer = Timer.periodic(Duration(seconds: 8), (timer) {
       if (pageCount != widget.itemCount - 1) {
         pageCount++;
       } else {
@@ -172,7 +172,7 @@ class PageIndicatorPaint extends CustomPainter {
 
     canvas.drawRRect(
       RRect.fromLTRBR(
-        indicatorLeftX + thickness,
+        indicatorLeftX + thickness - 1,
         0,
         indicatorRightX,
         2 * radius - thickness,
