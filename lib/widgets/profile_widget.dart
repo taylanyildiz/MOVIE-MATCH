@@ -50,6 +50,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black,
       body: Stack(
+        alignment: Alignment.center,
         children: [
           Container(
             child: Column(
