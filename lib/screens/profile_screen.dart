@@ -40,7 +40,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final FocusNode _nodeAbout = FocusNode();
   final FocusNode _nodeMail = FocusNode();
   final FocusNode _nodeSex = FocusNode();
-
   var focusNode = <FocusNode>[];
 
   @override
@@ -100,7 +99,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           birthDate = _controllerBirth.text;
           about = _controllerAbout.text;
           mail = _controllerMail.text;
-
           currentPage++;
           if (focusForm < focusNode.length - 1) {
             focusForm++;
