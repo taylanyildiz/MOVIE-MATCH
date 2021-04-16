@@ -60,7 +60,7 @@ final welComeHeadText = <String>[
 ];
 final welComeBodyText = <String>[
   "İzlediğin filmleri paylaş,arkadaşlarının paylaştıklarını gör",
-  "Sadece izlediklerin hakkında yorumlar yap başkaların yorumlarınıgör",
+  "Sadece izlediklerin hakkında yorumlar yap başkaların yorumlarını gör",
   "Yazmada çizmeden profilini yarat",
   "Kimlerle izlediğin filmler eşleşiyor ara bul",
 ];
