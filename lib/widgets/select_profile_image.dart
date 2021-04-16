@@ -47,7 +47,12 @@ class ProfileImage extends StatelessWidget {
           ImagePicker(
             itemCount: 3,
             height: 120.0,
+            showTitle: false,
             androidUiSettingsLock: androidUiSettings(),
+            iosUiSettings: iosUiSettings(),
+            selectTitle: 'Fotoğraf seç',
+            takeTitle: 'Foğtoraf çek',
+            deleteTitle: 'Fotğrafı sil',
             backgroundColor: Colors.black,
             backgroundImage: Colors.white,
             iconColor: Colors.red,
