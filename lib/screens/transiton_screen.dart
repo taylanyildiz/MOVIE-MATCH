@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:movie_match_splash_screen/screens/profile_screen.dart';
+import 'package:movie_match_splash_screen/screens/profile_edit_screen.dart';
 import 'package:movie_match_splash_screen/widgets/widgets.dart';
 
 class TranstionScreen extends StatefulWidget {
@@ -27,8 +27,8 @@ class _TranstionScreenState extends State<TranstionScreen>
     );
     time = Timer.periodic(Duration(seconds: 3), (time) {
       controller.stop();
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => ProfileEditScreen()));
       time.cancel();
     });
     animation.addListener(() {

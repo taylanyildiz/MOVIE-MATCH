@@ -15,6 +15,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  cf_indicator:
+    dependency: "direct main"
+    description:
+      name: cf_indicator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.7"
   characters:
     dependency: transitive
     description:
@@ -223,7 +230,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.19"
+    version: "0.3.0"
   typed_data:
     dependency: transitive
     description:
