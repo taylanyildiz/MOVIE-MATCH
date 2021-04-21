@@ -125,7 +125,11 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
     }
     if (currentPage == 7) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => NavScreen()));
+          context,
+          MaterialPageRoute(
+              builder: (context) => TranstionScreen(
+                    screen: NavScreen(),
+                  )));
     }
     setState(() {});
   }

@@ -105,7 +105,9 @@ class _ButtonNetflixState extends State<ButtonNetflix>
           context,
           PageRouteBuilder(
               pageBuilder: (context, animation, secondaryAnimation) =>
-                  TranstionScreen(),
+                  TranstionScreen(
+                    screen: ProfileEditScreen(),
+                  ),
               transitionDuration: Duration(milliseconds: 600),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
